@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+ <head>
+  <title>Employees App</title>
+  <link
+   rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+   crossorigin="anonymous"
+  />
+ </head>
+ <body style="background-color: #4db6ac">
+  <nav class="navbar navbar-light" style="background-color: #ff0033">
+   <a
+    href="#"
+    class="navbar-brand"
+    style="
+     background-color: #ffcc33;
+     color: #000000;
+     border-width: 10px;
+     border-color: #ffcc33;
+     border-style: solid;
+     border-spacing: 30px;
+     border-radius: 5px;
+    "
+    >Employee App</a
+   >
+   <a
+    class="navbar-link btn-lg"
+    href="{% url 'index' %}"
+    style="background-color: #ffcc33; color: #000000"
+   >
+   </a>
+   <a
+    href="{% url 'admin:index' %}"
+    class="navbar-link btn-lg"
+    style="background-color: #ffcc33; color: #000000"
+    >Admin</a
+   >
+   <a
+    href="{% url 'upload-employee' %}"
+    class="navbar-link btn-lg"
+    style="background-color: #ffcc33; color: #000000"
+    >Upload Employees</a
+   >
+  </nav>
+  <br />
+  {% block content %}
+  <div class="card-columns">
+   {% for employee in shelf %}
+   <div class="card" style="width: 18rem">
+   
+    <div class="card-body">
+     <h5 class="card-title">{{ employee.name }}</h5>
+     <div class="card-footer bg-transparent border-dark">
+      <p class="card-title">{{employee.address}}</p>
+      <center>
+       <a
+        href="update/{{employee.id}}"
+        class="btn btn-warning"
+        id="{{employee.id}}"
+        >edit</a
+       >
+       <a
+        href="delete/{{employee.id}}"
+        class="btn btn-danger"
+        id="{{employee.id}}"
+        >delete</a
+       >
+      </center>
+     </div>
+    </div>
+   </div>
+   {% endfor %}
+  </div>
+  {% endblock %}
+ </body>
+</html>
